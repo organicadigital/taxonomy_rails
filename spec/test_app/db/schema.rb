@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150205123804) do
+ActiveRecord::Schema.define(version: 20150205134440) do
 
   create_table "taxonomies", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -24,8 +24,10 @@ ActiveRecord::Schema.define(version: 20150205123804) do
     t.string   "name",        limit: 255, null: false
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
+    t.string   "ancestry",    limit: 255
   end
 
+  add_index "taxons", ["ancestry"], name: "index_taxons_on_ancestry", using: :btree
   add_index "taxons", ["taxonomy_id"], name: "index_taxons_on_taxonomy_id", using: :btree
 
   add_foreign_key "taxons", "taxonomies"
