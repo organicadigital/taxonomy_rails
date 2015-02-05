@@ -11,7 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150205160406) do
+ActiveRecord::Schema.define(version: 20150205161827) do
+
+  create_table "classifications", force: :cascade do |t|
+    t.integer  "taxon_id",          limit: 4,   null: false
+    t.integer  "classifiable_id",   limit: 4,   null: false
+    t.string   "classifiable_type", limit: 255, null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+  end
+
+  add_index "classifications", ["classifiable_type", "classifiable_id"], name: "index_classifications_on_classifiable_type_and_classifiable_id", using: :btree
+  add_index "classifications", ["taxon_id"], name: "index_classifications_on_taxon_id", using: :btree
+
+  create_table "products", force: :cascade do |t|
+    t.string   "name",       limit: 255, null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
 
   create_table "taxonomies", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -30,5 +47,6 @@ ActiveRecord::Schema.define(version: 20150205160406) do
   add_index "taxons", ["ancestry"], name: "index_taxons_on_ancestry", using: :btree
   add_index "taxons", ["taxonomy_id"], name: "index_taxons_on_taxonomy_id", using: :btree
 
+  add_foreign_key "classifications", "taxons"
   add_foreign_key "taxons", "taxonomies"
 end
