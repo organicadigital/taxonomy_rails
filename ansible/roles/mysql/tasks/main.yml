@@ -1,0 +1,20 @@
+---
+- name: Install MySQL
+  apt: >
+    name={{ item }}
+    update_cache=yes
+  sudo: yes
+  with_items:
+    - mysql-server
+    - python-mysqldb
+
+- name: Create MySQL user
+  mysql_user: >
+    name={{ mysql_user }}
+    password={{ mysql_password }}
+    priv=*.*:ALL,GRANT
+    login_user=root
+    login_password=
+  sudo: yes
+  notify:
+    - Restart MySQL

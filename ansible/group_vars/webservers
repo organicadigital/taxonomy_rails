@@ -1,0 +1,5 @@
+---
+rvm_ruby_version: ruby-2.2.0
+rvm_ruby_gemset: taxonomy_rails
+mysql_user: taxonomyrails
+mysql_password: Taxonomy951*

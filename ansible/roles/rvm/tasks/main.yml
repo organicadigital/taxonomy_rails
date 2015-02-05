@@ -1,0 +1,25 @@
+---
+- name: Receive RVM GPG keys
+  shell: gpg --keyserver hkp://keys.gnupg.net --recv-keys D39DC0E3
+
+- name: Copy gem resources file
+  copy: src=.gemrc dest=~/.gemrc
+
+- name: Install RVM
+  shell: \curl -L https://get.rvm.io | bash -s stable --autolibs=3
+  args:
+    creates: ~/.rvm/bin/rvm
+
+- name: Install Ruby
+  shell: ~/.rvm/bin/rvm install --default {{ rvm_ruby_version }}
+  args:
+    creates: ~/.rvm/rubies/{{ rvm_ruby_version }}
+
+- name: Create gemset
+  shell: ~/.rvm/bin/rvm gemset create {{ rvm_ruby_gemset }}
+  args:
+    creates: ~/.rvm/wrappers/{{ rvm_ruby_version }}@{{ rvm_ruby_gemset }}
+  when: rvm_ruby_gemset is defined
+
+- name: Configure RVM to use global cache
+  shell: ~/.rvm/bin/rvm gemset globalcache enable

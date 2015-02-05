@@ -1,0 +1,6 @@
+---
+- name: Install MySQL developer libraries
+  apt: >
+    name=libmysqlclient-dev
+    update_cache=yes
+  sudo: yes
