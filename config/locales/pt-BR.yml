@@ -1,0 +1,33 @@
+pt-BR:
+  activerecord:
+    attributes:
+      classification:
+        classifiable: Classificável
+        classifiable_id: Classificável
+        created_at: Criada em
+        taxon: Grupo
+        taxon_id: Grupo
+        updated_at: Modificada em
+      taxon:
+        classifications: Classificações
+        created_at: Criado em
+        name: Nome
+        slug: Nome para a URL
+        taxonomy: Taxonomia
+        taxonomy_id: Taxonomia
+        updated_at: Modificado em
+      taxonomy:
+        created_at: Criada em
+        name: Nome
+        taxons: Grupos
+        updated_at: Modificada em
+    models:
+      classification:
+        one: Classificação
+        other: Classificações
+      taxon:
+        one: Grupo
+        other: Grupos
+      taxonomy:
+        one: Taxonomia
+        other: Taxonomias
