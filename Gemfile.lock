@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    taxonomy_rails (0.1.0)
+    taxonomy_rails (0.1.1)
       ancestry (~> 2.1.0)
       friendly_id (~> 5.1.0)
       rails (~> 4.2.0)
