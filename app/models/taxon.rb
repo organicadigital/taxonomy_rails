@@ -10,6 +10,7 @@ class Taxon < ActiveRecord::Base
 
   validates :name, presence: true
   validates :taxonomy_id, presence: true
+  validates :slug, uniqueness: { scope: :ancestry }
 
   has_ancestry touch: true
 
