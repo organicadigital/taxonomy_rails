@@ -6,7 +6,7 @@ class Taxon < ActiveRecord::Base
   extend FriendlyId
 
   belongs_to :taxonomy, inverse_of: :taxons, touch: true
-  has_many :classifications, inverse_of: :taxonomy, dependent: :destroy
+  has_many :classifications, inverse_of: :taxon, dependent: :destroy
 
   validates :name, presence: true
   validates :taxonomy_id, presence: true
