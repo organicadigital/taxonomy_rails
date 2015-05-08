@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150205170632) do
+ActiveRecord::Schema.define(version: 20150210151915) do
 
   create_table "classifications", force: :cascade do |t|
     t.integer  "taxon_id",          limit: 4,   null: false
@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 20150205170632) do
   end
 
   add_index "taxons", ["ancestry"], name: "index_taxons_on_ancestry", using: :btree
-  add_index "taxons", ["slug"], name: "index_taxons_on_slug", unique: true, using: :btree
+  add_index "taxons", ["slug", "ancestry"], name: "index_taxons_on_slug_and_ancestry", unique: true, using: :btree
   add_index "taxons", ["taxonomy_id"], name: "index_taxons_on_taxonomy_id", using: :btree
 
   add_foreign_key "classifications", "taxons"
